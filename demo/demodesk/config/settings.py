@@ -180,15 +180,18 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # This demo uses the console backend, which simply prints emails to the console
 # rather than actually sending them out.
-DEFAULT_FROM_EMAIL = 'helpdesk@example.com'
-SERVER_EMAIL = 'helpdesk@example.com'
+DEFAULT_FROM_EMAIL = 'atoria@yandex.ru'
+SERVER_EMAIL = 'atoria@yandex.ru'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # If you want to test sending real emails, uncomment and modify the following:
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#EMAIL_HOST = 'smtp.example.com'
-#EMAIL_PORT = '25'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_PORT = '465'
 
+EMAIL_HOST_USER = 'atoria'
+EMAIL_HOST_PASSWORD = 'yoyzolewvtsmsbad'
+EMAIL_USE_SSL = True
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -196,15 +199,15 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # The most complete translations are: es-MX, ru, zh-Hans
 # Contribute to our translations via Transifex if you can!
 # See CONTRIBUTING.rst for more info.
-LANGUAGE_CODE = 'en-US'
+LANGUAGE_CODE = 'ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Novosibirsk'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)

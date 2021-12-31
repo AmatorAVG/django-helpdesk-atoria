@@ -4,6 +4,9 @@ from helpdesk.models import Queue, Ticket, FollowUp, PreSetReply, KBCategory
 from helpdesk.models import EscalationExclusion, EmailTemplate, KBItem
 from helpdesk.models import TicketChange, KBIAttachment, FollowUpAttachment, IgnoreEmail
 from helpdesk.models import CustomField
+from django.contrib.auth.admin import UserAdmin
+from helpdesk.models import UserProfile, Organization
+from django.contrib.auth import get_user_model
 
 
 @admin.register(Queue)
@@ -100,3 +103,26 @@ class KBCategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(PreSetReply)
 admin.site.register(EscalationExclusion)
+
+# +Amator
+@admin.register(Organization)
+class OrganizationAdmin(admin.ModelAdmin):
+    list_display = ('name', 'inn')
+
+
+class UserInline(admin.StackedInline):
+    model = UserProfile
+    can_delete = False
+    verbose_name_plural = 'Доп. информация'
+
+
+# Определяем новый класс настроек для модели User
+class UserAdmin(UserAdmin):
+    inlines = (UserInline,)
+
+
+# Перерегистрируем модель User
+User = get_user_model()
+admin.site.unregister(User)
+admin.site.register(User, UserAdmin)
+# -Amator

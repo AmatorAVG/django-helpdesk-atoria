@@ -39,7 +39,7 @@ def format_time_spent(time_spent):
     if time_spent:
         time_spent = "{0:02d}h:{1:02d}m".format(
             time_spent.seconds // 3600,
-            time_spent.seconds // 60
+            time_spent.seconds % 3600 // 60
         )
     else:
         time_spent = ""
@@ -1900,3 +1900,46 @@ class TicketDependency(models.Model):
 
     def __str__(self):
         return '%s / %s' % (self.ticket, self.depends_on)
+
+# +Amator
+class Organization(models.Model):
+
+    name = models.CharField(
+        _('Наименование'),
+        max_length=150,
+        help_text=_('Наименование организации'),
+    )
+
+    inn = models.CharField(
+        _('ИНН'),
+        max_length=12,
+        help_text=_('ИНН организации'),
+        blank=True,
+    )
+
+    class Meta:
+        verbose_name = 'Организация'
+        verbose_name_plural = 'Организации'
+
+    def __str__(self):
+        return '%s , ИНН %s' % (self.name, self.inn)
+
+
+class UserProfile(models.Model):
+    User = get_user_model()
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    organization = models.ForeignKey(
+        Organization,
+        on_delete=models.SET_NULL,
+        verbose_name=_('Organization'),
+        related_name='userprofiles',
+        null=True,
+    )
+
+    def __unicode__(self):
+        return self.user
+
+    class Meta:
+        verbose_name = 'Профиль'
+        verbose_name_plural = 'Профили'
+# -Amator
