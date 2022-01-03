@@ -13,3 +13,5 @@ six
 pinax_teams
 djangorestframework
 django-model-utils
+environs~=9.3.3
+rollbar~=0.16.2
