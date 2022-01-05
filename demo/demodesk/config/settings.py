@@ -29,7 +29,7 @@ DEBUG = env.bool('DEBUG', True)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['62.173.139.168']
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', ['127.0.0.1', 'localhost', '62.173.139.168', 'helpdesk.atoria54.ru'])
 
 # SECURITY WARNING: you probably want to configure your server
 # to use HTTPS with secure cookies, then you'd want to set
