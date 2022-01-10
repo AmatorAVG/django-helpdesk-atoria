@@ -54,8 +54,9 @@ class HelpdeskUser:
         return Ticket.objects.filter(queue__in=self.get_queues())
 
     def has_full_access(self):
-        return self.user.is_superuser or self.user.is_staff \
-            or helpdesk_settings.HELPDESK_ALLOW_NON_STAFF_TICKET_UPDATE
+        return self.user.is_superuser or helpdesk_settings.HELPDESK_ALLOW_NON_STAFF_TICKET_UPDATE
+        # Amator
+        # self.user.is_staff \
 
     def can_access_queue(self, queue):
         """Check if a certain user can access a certain queue.
@@ -77,13 +78,21 @@ class HelpdeskUser:
         """Check to see if the user has permission to access
             a ticket. If not then deny access."""
         user = self.user
-        if self.can_access_queue(ticket.queue):
-            return True
-        elif self.has_full_access() or \
-                (ticket.assigned_to and user.id == ticket.assigned_to.id):
+        # if self.can_access_queue(ticket.queue):
+        #     return True
+        # elif self.has_full_access() or \
+        #         (ticket.assigned_to and user.id == ticket.assigned_to.id):
+        #     return True
+        # else:
+        #     return False
+        # +Amator
+        if self.has_full_access() or \
+                (ticket.assigned_to and user.id == ticket.assigned_to.id) or \
+                (user.email == ticket.submitter_email):
             return True
         else:
             return False
+        # -Amator
 
     def can_access_kbcategory(self, category):
         if category.public:

@@ -10,12 +10,14 @@
         <div class="table-responsive">
             <table class="table table-sm table-border">
                 <thead class="thead-light">
+                    {% if editable %}
                     <tr class=''><th colspan='4'><h3>{{ ticket.queue.slug }}-{{ ticket.id }}. {{ ticket.title }} [{{ ticket.get_status }}]</h3>
                             {% blocktrans with ticket.queue as queue %}Queue: {{ queue }}{% endblocktrans %}
                             <span class='ticket_toolbar float-right'>
                         <a href="{% url 'helpdesk:edit' ticket.id %}" class="ticket-edit"><button class="btn btn-warning btn-sm"><i class="fas fa-pencil-alt"></i> {% trans "Edit" %}</button></a>
                     | <a href="{% url 'helpdesk:delete' ticket.id %}" class="ticket-delete"><button class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> {% trans "Delete" %}</button></a>
                     |
+                    {% endif %}
                     {% if ticket.on_hold %}
                     <form class="form-inline ticket-hold" method='post' action='unhold/'>
                         {% csrf_token %}
@@ -41,7 +43,7 @@
                             {% endif %}{% endspaceless %}</td>
                     </tr>{% endfor %}
                     <tr>
-                        <th class="table-active">{% trans "Due Date" %}</th>
+                        <th class="table-active">{% trans "Крайний срок" %}</th>
                         <td>{{ ticket.due_date|date:"DATETIME_FORMAT" }} {% if ticket.due_date %}({{ ticket.due_date|naturaltime }}){% endif %}
                         </td>
                         <th class="table-active">{% trans "Submitted On" %}</th>
@@ -66,11 +68,13 @@
                         <th class="table-active">{% trans "Priority" %}</th>
                         <td class="{% if ticket.priority < 3 %}table-warning{% endif %}">{{ ticket.get_priority_display }}
                         </td>
-                        <th class="table-active">{% trans "Copies To" %}</th>
-                        <td>{{ ticketcc_string }} <a data-toggle='tooltip' href='{% url 'helpdesk:ticket_cc' ticket.id %}' title='{% trans "Click here to add / remove people who should receive an e-mail whenever this ticket is updated." %}'><strong><button type="button" class="btn btn-warning btn-sm float-right"><i class="fa fa-share"></i></button></strong></a>{% if SHOW_SUBSCRIBE %} <strong><a data-toggle='tooltip' href='?subscribe' title='{% trans "Click here to subscribe yourself to this ticket, if you want to receive an e-mail whenever this ticket is updated." %}'><button type="button" class="btn btn-warning btn-sm float-right"><i class="fas fa-rss-square"></i></button></a></strong>{% endif %}</td>
+
+                        <th class="table-active">{% trans "Всего затрачено времени" %}</th>
+                        <td>{{ ticket.time_spent_formated }}</td>
                     </tr>
 
                     <tr>
+                        {% if editable %}
                         <th class="table-active">{% trans "Dependencies" %}</th>
                         <td>
                             <a data-toggle='tooltip' href='{% url 'helpdesk:ticket_dependency_add' ticket.id %}' title="{% trans "Click on 'Add Dependency', if you want to make this ticket dependent on another ticket. A ticket may not be closed until all tickets it depends on are closed." %}"><button type="button" class="btn btn-primary btn-sm float-right"><i class="fas fa-link"></i></button></a>
@@ -82,9 +86,13 @@
                             {% trans "This ticket has no dependencies." %}
                             {% endfor %}
                         </td>
-                        <th class="table-active">{% trans "Total time spent" %}</th>
-                        <td>{{ ticket.time_spent_formated }}</td>
+                        {% endif %}
+                        {% if editable %}
+                        <th class="table-active">{% trans "Copies To" %}</th>
+                        <td>{{ ticketcc_string }} <a data-toggle='tooltip' href='{% url 'helpdesk:ticket_cc' ticket.id %}' title='{% trans "Click here to add / remove people who should receive an e-mail whenever this ticket is updated." %}'><strong><button type="button" class="btn btn-warning btn-sm float-right"><i class="fa fa-share"></i></button></strong></a>{% if SHOW_SUBSCRIBE %} <strong><a data-toggle='tooltip' href='?subscribe' title='{% trans "Click here to subscribe yourself to this ticket, if you want to receive an e-mail whenever this ticket is updated." %}'><button type="button" class="btn btn-warning btn-sm float-right"><i class="fas fa-rss-square"></i></button></a></strong>{% endif %}</td>
+                        {% endif %}
                     </tr>
+
                     {% if ticket.kbitem %}
                     <tr>
                         <th class="table-active">{% trans "Knowlegebase item" %}</th>
@@ -121,7 +129,9 @@
                     </tr>{% endif %}
                 </tbody>
             </table>
+            {% if editable %}
             <a href='#FurtherEditOptions'><button type="button" class="btn btn-sm btn-warning float-right" onclick="$('#FurtherEditOptions').fadeIn()"><i class="fas fa-pencil-alt"></i>&nbsp;{% trans "Edit details" %}</button></a>
+            {% endif %}
         </div>
         <!-- /.table-responsive -->
     </div>

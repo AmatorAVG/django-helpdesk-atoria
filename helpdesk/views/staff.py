@@ -210,18 +210,20 @@ def dashboard(request):
 dashboard = staff_member_required(dashboard)
 
 
-def ticket_perm_check(request, ticket):
+def ticket_perm_check(request, ticket, perm=False): # Amator
     huser = HelpdeskUser(request.user)
     if not huser.can_access_queue(ticket.queue):
         raise PermissionDenied()
     if not huser.can_access_ticket(ticket):
         raise PermissionDenied()
-
+    if perm:
+        if not huser.user.has_perm(perm): # Amator
+            raise PermissionDenied()
 
 @helpdesk_staff_member_required
 def delete_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
-    ticket_perm_check(request, ticket)
+    ticket_perm_check(request, ticket, 'helpdesk.delete_ticket') # Amator
 
     if request.method == 'GET':
         return render(request, 'helpdesk/delete_ticket.html', {
@@ -244,7 +246,7 @@ def followup_edit(request, ticket_id, followup_id):
     """Edit followup options with an ability to change the ticket."""
     followup = get_object_or_404(FollowUp, id=followup_id)
     ticket = get_object_or_404(Ticket, id=ticket_id)
-    ticket_perm_check(request, ticket)
+    ticket_perm_check(request, ticket, 'helpdesk.change_followup') # Amator
 
     if request.method == 'GET':
         form = EditFollowUpForm(initial={
@@ -391,6 +393,7 @@ def view_ticket(request, ticket_id):
             Q(queues=ticket.queue) | Q(queues__isnull=True)),
         'ticketcc_string': ticketcc_string,
         'SHOW_SUBSCRIBE': show_subscribe,
+        'editable': request.user.has_perm('helpdesk.change_ticket') # Amator
     })
 
 
@@ -1216,7 +1219,7 @@ def timeline_ticket_list(request, query):
 @helpdesk_staff_member_required
 def edit_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
-    ticket_perm_check(request, ticket)
+    ticket_perm_check(request, ticket, 'helpdesk.change_ticket') # Amator
 
     form = EditTicketForm(request.POST or None, instance=ticket)
     if form.is_valid():
