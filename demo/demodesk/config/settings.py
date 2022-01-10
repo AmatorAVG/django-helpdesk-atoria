@@ -24,10 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
-DEBUG = env.bool('DEBUG', True)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DEBUG', False)
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', ['127.0.0.1', 'localhost', '62.173.139.168', 'helpdesk.atoria54.ru'])
 
@@ -205,8 +204,11 @@ EMAIL_HOST = 'smtp.yandex.ru'
 EMAIL_PORT = '465'
 
 EMAIL_HOST_USER = 'atoria'
-EMAIL_HOST_PASSWORD = 'yoyzolewvtsmsbad'
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+
 EMAIL_USE_SSL = True
+
+HELPDESK_ALLOW_NON_STAFF_TICKET_UPDATE = env('HELPDESK_ALLOW_NON_STAFF_TICKET_UPDATE', False)
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
