@@ -48,7 +48,7 @@ msgstr "Краткое описание проблемы"
 
 #: forms.py:153
 msgid "Description of your issue"
-msgstr "Описание вашей проблемы."
+msgstr "Описание вашей проблемы"
 
 #: forms.py:155
 msgid "Please be as descriptive as possible and include all details"
