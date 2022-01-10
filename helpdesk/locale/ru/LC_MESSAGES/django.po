@@ -40,7 +40,7 @@ msgstr "Электронный адрес отправителя"
 #: templates/helpdesk/ticket_list.html:222 views/staff.py:1178
 #: views/staff.py:1184 views/staff.py:1190 views/staff.py:1196
 msgid "Queue"
-msgstr "Очередь"
+msgstr "Услуга"
 
 #: forms.py:148
 msgid "Summary of the problem"
@@ -188,7 +188,7 @@ msgstr ""
 #: management/commands/create_queue_permissions.py:69
 #: migrations/0009_migrate_queuemembership.py:30 models.py:322
 msgid "Permission for queue: "
-msgstr "Право на очередь:"
+msgstr "Право на услугу:"
 
 #: management/commands/create_usersettings.py:24
 msgid ""
@@ -269,7 +269,7 @@ msgid ""
 "All outgoing e-mails for this queue will use this e-mail address. If you use "
 "IMAP or POP3, this should be the e-mail address for that mailbox."
 msgstr ""
-"Все исходящие электронные письма этой очереди будут использовать этот "
+"Все исходящие электронные письма этой услуге будут использовать этот "
 "электронный адрес. Если вы используете IMAP или POP3 это и есть этот "
 "электронный адрес."
 
@@ -281,7 +281,7 @@ msgstr "Локаль"
 msgid ""
 "Locale of this queue. All correspondence in this queue will be in this "
 "language."
-msgstr "Локаль этой очереди. Вся переписка в этой очереди будет на этом языке."
+msgstr "Локаль этой услуги. Вся переписка в этой услуге будет на этом языке."
 
 #: models.py:64
 msgid "Allow Public Submission?"
@@ -289,7 +289,7 @@ msgstr "Разрешить общедоступное размещение ти�
 
 #: models.py:67
 msgid "Should this queue be listed on the public submission form?"
-msgstr "Должна ли эта очередь быть доступна в публичной форме заявки?"
+msgstr "Должна ли эта услуга быть доступна в публичной форме заявки?"
 
 #: models.py:71
 msgid "Allow E-Mail Submission?"
@@ -324,7 +324,7 @@ msgid ""
 "mail addresses."
 msgstr ""
 "Если здесь ввести адрес электронной почты, то он будет получать уведомления "
-"обо всех новых тикетах, созданных в этой очереди. Введите запятую между "
+"обо всех новых тикетах, созданных в этой услуге. Введите запятую между "
 "несколькими адресами электронной почты."
 
 #: models.py:97
@@ -339,7 +339,7 @@ msgid ""
 msgstr ""
 "Если ввести здесь адрес электронной почты, то он будет получать уведомления "
 "о всей деятельности (новые тикеты, закрытие тикета, обновления, назначений и "
-"т.д.) в данной очереди. Разделяйте адреса запятыми."
+"т.д.) в данной услуге. Разделяйте адреса запятыми."
 
 #: models.py:108
 msgid "E-Mail Box Type"
@@ -431,7 +431,7 @@ msgid ""
 msgstr ""
 "Если используется IMAP, из какой папки вы желаете скачивать сообщения? "
 "Фильтрация сообщений на сервере позволяет вам использовать один IMAP аккаунт "
-"для множества очередей. По умолчанию: INBOX."
+"для множества услуг. По умолчанию: INBOX."
 
 #: models.py:172
 #, fuzzy
@@ -547,7 +547,7 @@ msgstr "Владелец по-умолчанию"
 
 #: models.py:270 templates/helpdesk/email_ignore_list.html:27
 msgid "Queues"
-msgstr "Очереди"
+msgstr "Услуги"
 
 #: models.py:366 templates/helpdesk/report_index.html:40
 #: templates/helpdesk/ticket.html:156
@@ -813,8 +813,8 @@ msgid ""
 "Leave blank to allow this reply to be used for all queues, or select those "
 "queues you wish to limit this reply to."
 msgstr ""
-"Оставьте пустым что бы позволить всем очередям использовать этот ответ, или "
-"выберете каким очередям можно использовать этот ответ."
+"Оставьте пустым что бы позволить всем услугам использовать этот ответ, или "
+"выберете каким услугам можно использовать этот ответ."
 
 #: models.py:820 models.py:857 models.py:1168
 #: templates/helpdesk/email_ignore_list.html:24
@@ -838,15 +838,15 @@ msgid ""
 "{{ queue }} - The queue; and {{ user }} - the current user."
 msgstr ""
 "Доступный контекст: {{ ticket }} - тикет (например {{ ticket.title }}); "
-"{{ queue }} - очередь; и {{ user }} - текущий пользователь."
+"{{ queue }} - услуга; и {{ user }} - текущий пользователь."
 
 #: models.py:852
 msgid ""
 "Leave blank for this exclusion to be applied to all queues, or select those "
 "queues you wish to exclude with this entry."
 msgstr ""
-"Оставьте пустым что бы это исключение применялось ко всем очередям, или "
-"выберите очереди для который применять исключение."
+"Оставьте пустым что бы это исключение применялось ко всем услугам, или "
+"выберите услуги для который применять исключение."
 
 #: models.py:863
 msgid "Date on which escalation should not happen"
@@ -1045,7 +1045,7 @@ msgid ""
 "queues you wish to ignore this e-mail for."
 msgstr ""
 "Оставьте пустым, чтобы этот адрес электронной почты был проигнорирован во "
-"всех очередях, или выберите те очереди, для которых он будет проигнорирован."
+"всех услугах, или выберите те услуги, для которых он будет проигнорирован."
 
 #: models.py:1174
 msgid "Date on which this e-mail address was added"
@@ -1337,13 +1337,13 @@ msgstr "Создать тикет"
 #: templates/helpdesk/create_ticket.html:31
 #: templates/helpdesk/edit_ticket.html:11
 msgid "Unless otherwise stated, all fields are required."
-msgstr ""
+msgstr "Если не указано иное, все поля обязательны для заполнения."
 
 #: templates/helpdesk/create_ticket.html:31
 #: templates/helpdesk/edit_ticket.html:11
 #: templates/helpdesk/public_homepage.html:29
 msgid "Please provide as descriptive a title and description as possible."
-msgstr ""
+msgstr "Пожалуйста, предоставьте как можно более детальное описание."
 
 #: templates/helpdesk/create_ticket.html:41 templates/helpdesk/ticket.html:143
 #: templates/helpdesk/ticket.html:192
@@ -1816,7 +1816,7 @@ msgstr "Ошибка:"
 #: templates/helpdesk/public_view_ticket.html:10
 #, python-format
 msgid "Queue: %(queue_name)s"
-msgstr "Очередь: %(queue_name)s"
+msgstr "Услуга: %(queue_name)s"
 
 #: templates/helpdesk/public_view_ticket.html:14
 #: templates/helpdesk/ticket_desc_table.html:42
@@ -1945,7 +1945,7 @@ msgstr "по Приоритету"
 
 #: templates/helpdesk/report_index.html:79
 msgid "by Queue"
-msgstr "по Очереди"
+msgstr "по Услуге"
 
 #: templates/helpdesk/report_index.html:80
 #: templates/helpdesk/report_index.html:87
@@ -1959,7 +1959,7 @@ msgstr "по Месяцам"
 
 #: templates/helpdesk/report_index.html:84
 msgid "Reports By Queue"
-msgstr "Отчеты в разрезе Очередей"
+msgstr "Отчеты в разрезе Услуг"
 
 #: templates/helpdesk/report_index.html:89 views/staff.py:1195
 msgid "Days until ticket closed by Month"
@@ -2041,13 +2041,13 @@ msgid ""
 "new tickets coming into that queue."
 msgstr ""
 "Эти ленты RSS позволят вам видеть сводку по вашим собственным или всем "
-"тикетам, для любой очереди. Например, если вы управляете персоналом, "
-"использующим определенную очередь, можно использовать ленту RSS для "
-"просмотра новых тикетов этой очереди."
+"тикетам, для любой услуге. Например, если вы управляете персоналом, "
+"использующим определенную услугу, можно использовать ленту RSS для "
+"просмотра новых тикетов этой услуги."
 
 #: templates/helpdesk/rss_list.html:26
 msgid "Per-Queue Feeds"
-msgstr "Ленты Новостей по Очередям"
+msgstr "Ленты Новостей по Услугам"
 
 #: templates/helpdesk/rss_list.html:35
 msgid "All Open Tickets"
@@ -2067,7 +2067,7 @@ msgstr "Игнорируемые адреса электронной почты"
 
 #: templates/helpdesk/system_settings.html:12
 msgid "Maintain Queues"
-msgstr "Настройка очередей"
+msgstr "Настройка услуг"
 
 #: templates/helpdesk/system_settings.html:13
 msgid "Maintain Pre-Set Replies"
@@ -2132,7 +2132,7 @@ msgid ""
 "You can insert ticket and queue details in your message. For more "
 "information, see the <a href='../../help/context/'>context help page</a>."
 msgstr ""
-"Вы можете вставить детали о тикете и очереди в ваше сообщение. Для "
+"Вы можете вставить детали о тикете и услуге в ваше сообщение. Для "
 "дополнительной информации смотрите <a href='../../help/context/'>Страница "
 "помощи про Контекст</a>."
 
@@ -2389,7 +2389,7 @@ msgstr "Удерживать"
 #: templates/helpdesk/ticket_desc_table.html:20
 #, python-format
 msgid "Queue: %(queue)s"
-msgstr "Очередь: %(queue)s"
+msgstr "Услуга: %(queue)s"
 
 #: templates/helpdesk/ticket_desc_table.html:47
 msgid "Assigned To"
@@ -2508,7 +2508,7 @@ msgstr "Нажмите Ctrl для выбора нескольких вариа�
 
 #: templates/helpdesk/ticket_list.html:113
 msgid "Queue(s)"
-msgstr "Очередь(и)"
+msgstr "Услуга(и)"
 
 #: templates/helpdesk/ticket_list.html:114
 #: templates/helpdesk/ticket_list.html:120
@@ -2659,7 +2659,7 @@ msgstr "Сохранить настройки"
 #: views/feeds.py:37
 #, python-format
 msgid "Helpdesk: Open Tickets in queue %(queue)s for %(username)s"
-msgstr "Helpdesk: открытые тикеты в очереди %(queue)s для %(username)s"
+msgstr "Helpdesk: открытые тикеты в услуге %(queue)s для %(username)s"
 
 #: views/feeds.py:42
 #, python-format
@@ -2669,7 +2669,7 @@ msgstr "Helpdesk: открытые тикеты для %(username)s"
 #: views/feeds.py:48
 #, python-format
 msgid "Open and Reopened Tickets in queue %(queue)s for %(username)s"
-msgstr "Открытые и переоткрытые тикеты в очереди %(queue)s для %(username)s"
+msgstr "Открытые и переоткрытые тикеты в услуге %(queue)s для %(username)s"
 
 #: views/feeds.py:53
 #, python-format
@@ -2699,12 +2699,12 @@ msgstr ""
 #: views/feeds.py:141
 #, python-format
 msgid "Helpdesk: Open Tickets in queue %(queue)s"
-msgstr "Helpdesk: открытые тикеты в очереди %(queue)s"
+msgstr "Helpdesk: открытые тикеты в услуге %(queue)s"
 
 #: views/feeds.py:146
 #, python-format
 msgid "Open and Reopened Tickets in queue %(queue)s"
-msgstr "Открытые и переоткрытые тикеты в очереди %(queue)s"
+msgstr "Открытые и переоткрытые тикеты в услуге %(queue)s"
 
 #: views/public.py:86
 msgid "Invalid ticket ID or e-mail address. Please try again."
@@ -2771,7 +2771,7 @@ msgstr "Пользователи по Приоритетам"
 
 #: views/staff.py:1158
 msgid "User by Queue"
-msgstr "Пользователи по Очередям"
+msgstr "Пользователи по Услугам"
 
 #: views/staff.py:1165
 msgid "User by Status"
@@ -2783,15 +2783,15 @@ msgstr "Пользователи по Месяцам"
 
 #: views/staff.py:1177
 msgid "Queue by Priority"
-msgstr "Очереди по Приоритетам"
+msgstr "Услуги по Приоритетам"
 
 #: views/staff.py:1183
 msgid "Queue by Status"
-msgstr "Очереди по Статусам"
+msgstr "Услуги по Статусам"
 
 #: views/staff.py:1189
 msgid "Queue by Month"
-msgstr "Очереди по Месяцам"
+msgstr "Услуги по Месяцам"
 
 #~ msgid "Description of Issue"
 #~ msgstr "Описание проблемы"

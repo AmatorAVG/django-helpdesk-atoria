@@ -204,6 +204,7 @@ def dashboard(request):
         'kbitems': kbitems,
         'all_tickets_reported_by_current_user': all_tickets_reported_by_current_user,
         'basic_ticket_stats': basic_ticket_stats,
+        'editable': request.user.has_perm('helpdesk.change_ticket')  # Amator
     })
 
 

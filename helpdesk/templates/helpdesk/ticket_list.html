@@ -68,7 +68,7 @@
                                 <th></th>
                                 <th>{% trans "Ticket" %}</th>
                                 <th>{% trans "Priority" %}</th>
-                                <th>{% trans "Queue" %}</th>
+                                <th>{% trans "Услуга" %}</th>
                                 <th>{% trans "Status" %}</th>
                                 <th>{% trans "Created" %}</th>
                                 <th>{% trans "Due Date" %}</th>
@@ -170,7 +170,7 @@
                                             {% trans "Owner" %}
                                         </option>
                                         <option id="filterBuilderSelect-Queue" value="Queue"{% if query_params.filtering.queue__id__in %} disabled{% endif %}>
-                                            {% trans "Queue" %}
+                                            {% trans "Услуга" %}
                                         </option>
                                         <option id="filterBuilderSelect-Status" value="Status"{% if query_params.filtering.status__in %} disabled{% endif %}>
                                             {% trans "Status" %}
