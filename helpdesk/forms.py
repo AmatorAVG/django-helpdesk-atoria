@@ -381,6 +381,10 @@ class TicketForm(AbstractTicketForm):
                 ticket.assigned_to = u
             except User.DoesNotExist:
                 ticket.assigned_to = None
+        # +Amator
+        if queue.default_owner and not ticket.assigned_to:
+            ticket.assigned_to = queue.default_owner
+        # -Amator
         ticket.save()
 
         self._create_custom_fields(ticket)
