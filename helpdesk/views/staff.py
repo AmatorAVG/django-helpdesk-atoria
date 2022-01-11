@@ -1335,6 +1335,10 @@ rss_list = staff_member_required(rss_list)
 
 @helpdesk_staff_member_required
 def report_index(request):
+    # +Amator
+    if not request.user.has_perm('helpdesk.change_ticket'):
+        return dashboard(request)
+    # -Amator
     number_tickets = Ticket.objects.all().count()
     saved_query = request.GET.get('saved_query', None)
 
@@ -1375,6 +1379,10 @@ report_index = staff_member_required(report_index)
 
 @helpdesk_staff_member_required
 def run_report(request, report):
+    # +Amator
+    if not request.user.has_perm('helpdesk.change_ticket'):
+        return dashboard(request)
+    # -Amator
     if Ticket.objects.all().count() == 0 or report not in (
             'queuemonth', 'usermonth', 'queuestatus', 'queuepriority', 'userstatus',
             'userpriority', 'userqueue', 'daysuntilticketclosedbymonth'):
