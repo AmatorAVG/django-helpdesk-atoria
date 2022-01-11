@@ -88,7 +88,8 @@ class HelpdeskUser:
         # +Amator
         if self.has_full_access() or \
                 (ticket.assigned_to and user.id == ticket.assigned_to.id) or \
-                (user.email == ticket.submitter_email):
+                (user.email == ticket.submitter_email) or \
+                user.has_perm('auth.add_user'):
             return True
         else:
             return False

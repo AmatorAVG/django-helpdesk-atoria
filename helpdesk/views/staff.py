@@ -1019,6 +1019,11 @@ def merge_tickets(request):
 
 @helpdesk_staff_member_required
 def ticket_list(request):
+    # +Amator
+    if not request.user.has_perm('helpdesk.change_ticket'):
+        return dashboard(request)
+    # -Amator
+
     context = {}
 
     huser = HelpdeskUser(request.user)

@@ -9,11 +9,13 @@
             <span>{% trans "Dashboard" %}</span>
           </a>
         </li>
+        {% if editable %}
         <li class="nav-item">
           <a class="nav-link" href="{% url 'helpdesk:list' %}">
             <i class="fas fa-fw fa-tasks"></i>
             <span>{% trans "Все тикеты" %}</span>
           </a>
+        {% endif %}
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="ticketsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -18,6 +18,21 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
+# +Amator
+from django.http import Http404
+from functools import wraps
+
+def change_ticket_required(func):
+    @wraps(func)
+    def wrapper(request, *args, **kwargs):
+        if request.user.has_perm('helpdesk.change_ticket'):
+            return func(request, *args, **kwargs)
+        raise Http404()
+    return wrapper
+
+admin.site.login = change_ticket_required(admin.site.login)
+# -Amator
+
 
 # The following uses the static() helper function,
 # which only works when in development mode (using DEBUG).
