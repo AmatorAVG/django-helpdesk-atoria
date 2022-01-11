@@ -156,11 +156,11 @@
                 <dd class='form_help_text'>{% trans "If this is public, the submitter will be e-mailed your comment or resolution." %}</dd>
                 {% endif %}
 
-                {% if user.is_staff and editable %}
+                {% if user.is_staff %}
                 <dt>
-                    <label for='id_time_spent'>{% trans "Time spent" %}</label> <span class='form_optional'>{% trans "(Optional)" %}</span>
+                    <label for='id_time_spent'>{% trans "Затраченное на данное решение время " %}</label> <span class='form_optional'>{% trans "(Optional)" %}</span>
                 </dt>
-                <dd><input name='time_spent' type="time" /></dd>
+                <dd><input name='time_spent' type="time"/></dd>
                 {% endif %}
             </dl>
         {% if editable %}
